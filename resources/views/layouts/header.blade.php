@@ -29,14 +29,14 @@
                                 alt="User Image">
 
                             <p>
-                                {{ auth()->user()->name }} -{{ auth()->user()->email }}
+                                {{ auth()->user()->name }} - {{ auth()->user()->email }}
                             </p>
                         </li>
 
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Profil</a>
+                                <a href="{{ route('profile.show') }}" class="btn btn-default btn-flat">Profil</a>
                             </div>
                             <div class="pull-right">
                                 <a href="#" class="btn btn-default btn-flat"
