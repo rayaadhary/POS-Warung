@@ -15,9 +15,9 @@
             <div class="box">
                 <div class="box-header with-border">
                     <div class="btn-group"></div>
-                    <button onclick="addForm('{{ route('produk.store') }}')" class="btn btn-success btn-xs btn-flat"><i
-                            class="fa fa-plus-circle"></i> Tambah</button>
-                    <button onclick="deleteSelected('{{ route('produk.delete_selected') }}')"
+                    <button type="button" onclick="addForm('{{ route('produk.store') }}')"
+                        class="btn btn-success btn-xs btn-flat"><i class="fa fa-plus-circle"></i> Tambah</button>
+                    <button type="button" onclick="deleteSelected('{{ route('produk.delete_selected') }}')"
                         class="btn btn-danger btn-xs btn-flat"><i class="fa fa-trash"></i> Hapus</button>
                 </div>
                 <div class="box-body table-responsive">

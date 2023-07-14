@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/pelanggan/data', [CustomerController::class, 'data'])->name('pelanggan.data');
     Route::resource('/pelanggan', CustomerController::class);
+
+    Route::get('/supplier/data', [SupplierController::class, 'data'])->name('supplier.data');
+    Route::resource('/supplier', SupplierController::class);
 
     Route::get('/produk/data', [ProductController::class, 'data'])->name('produk.data');
     Route::post('/produk/delete_selected', [ProductController::class, 'deleteSelected'])->name('produk.delete_selected');
