@@ -19,7 +19,10 @@ class ExpenseController extends Controller
             ->of($pengeluaran)
             ->addIndexColumn()
             ->addColumn('tanggal', function ($pengeluaran) {
-                return tanggalIndonesia($pengeluaran->tanggal);
+                return tanggalIndonesia($pengeluaran->tanggal, false);
+            })
+            ->addColumn('nominal', function ($pengeluaran) {
+                return formatUang($pengeluaran->nominal);
             })
             ->addColumn('aksi', function ($pengeluaran) {
                 return '
