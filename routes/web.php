@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/kategori/data', [CategoryController::class, 'data'])->name('kategori.data');
     Route::resource('/kategori', CategoryController::class);
 
+    Route::get('/pelanggan/data', [CustomerController::class, 'data'])->name('pelanggan.data');
+    Route::resource('/pelanggan', CustomerController::class);
+
     Route::get('/produk/data', [ProductController::class, 'data'])->name('produk.data');
+    Route::post('/produk/delete_selected', [ProductController::class, 'deleteSelected'])->name('produk.delete_selected');
     Route::resource('/produk', ProductController::class);
 });

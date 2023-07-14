@@ -28,6 +28,9 @@ class ProductController extends Controller
         return datatables()
             ->of($produk)
             ->addIndexColumn()
+            ->addColumn('select_all', function ($produk) {
+                return '<input type="checkbox" name="id_products[]" value="' . $produk->id_products . '">';
+            })
             ->addColumn('kode_produk', function ($produk) {
                 return '<span class="label label-success">' . $produk->kode_produk . '</span>';
             })
@@ -48,7 +51,7 @@ class ProductController extends Controller
                 </div>
                 ';
             })
-            ->rawColumns(['aksi', 'kode_produk'])
+            ->rawColumns(['aksi', 'kode_produk', 'select_all'])
             ->make(true);
     }
 
@@ -122,6 +125,15 @@ class ProductController extends Controller
     public function destroy($id)
     {
         Product::find($id)->delete();
+        return response(null, 204);
+    }
+
+    public function deleteSelected(Request $request)
+    {
+        foreach ($request->id_products as $id) {
+            Product::find($id)->delete();
+        }
+
         return response(null, 204);
     }
 }
