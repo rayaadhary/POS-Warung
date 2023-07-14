@@ -2,39 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
+use App\Models\Expense;
 use Illuminate\Http\Request;
 
-class CustomerController extends Controller
+class ExpenseController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        return view('pelanggan.index');
+        return view('pengeluaran.index');
     }
 
     public function data()
     {
-        $pelanggan = Customer::orderBy('kode_customers')->get();
+        $pengeluaran = Expense::orderBy('id_expenses', 'desc')->get();
         return datatables()
-            ->of($pelanggan)
+            ->of($pengeluaran)
             ->addIndexColumn()
-            ->addColumn('kode_customers', function ($pelanggan) {
-                return '<span class="label label-success">' . $pelanggan->kode_customers . '</span>';
+            ->addColumn('tanggal', function ($pengeluaran) {
+                return tanggalIndonesia($pengeluaran->tanggal);
             })
-            ->addColumn('aksi', function ($pelanggan) {
+            ->addColumn('aksi', function ($pengeluaran) {
                 return '
                 <div class="btn-group">
-                    <button onclick="editForm(`'  . route('pelanggan.update', $pelanggan->id_customers)  . '`)" class="btn btn-xs btn-info btn-flat"><i class="fa fa-pencil"></i></button>
-                    <button onclick="deleteData(`'  . route('pelanggan.destroy', $pelanggan->id_customers)  . '`)" class="btn btn-xs btn-danger btn-flat"><i class="fa fa-trash"></i></button>
+                    <button onclick="editForm(`'  . route('pengeluaran.update', $pengeluaran->id_expenses)  . '`)" class="btn btn-xs btn-info btn-flat"><i class="fa fa-pencil"></i></button>
+                    <button onclick="deleteData(`'  . route('pengeluaran.destroy', $pengeluaran->id_expenses)  . '`)" class="btn btn-xs btn-danger btn-flat"><i class="fa fa-trash"></i></button>
                 </div>
                 ';
             })
-            ->rawColumns(['aksi', 'kode_customers'])
+            ->rawColumns(['aksi'])
             ->make(true);
     }
 
@@ -56,62 +51,54 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        $customers = Customer::latest()->first() ?? new Customer();
-
-        $id = (int)$customers->id_customers + 1;
-        $request['kode_customers'] = 'C' . tambah_nol_didepan($id, 6);
-
-        Customer::create($request->all());
+        Expense::create($request->all());
         return response()->json('Data berhasil disimpan', 200);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $pelanggan = Customer::find($id);
-        return response()->json($pelanggan);
+        $pengeluaran = Expense::find($id);
+        return response()->json($pengeluaran);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int  $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param int  $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        Customer::find($id)->update([
-            'nama_customers' => $request->nama_customers
-        ]);
+        Expense::find($id)->update($request->all());
         return response()->json('Data berhasil disimpan', 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param int  $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        Customer::find($id)->delete();
+        Expense::find($id)->delete();
         return response(null, 204);
     }
 }

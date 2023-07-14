@@ -73,7 +73,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $produk = Product::latest()->first();
+        $produk = Product::latest()->first() ?? new Product();
         $request['kode_produk'] = 'P' . tambah_nol_didepan((int)$produk->id_products + 1, 6);
 
         Product::create($request->all());

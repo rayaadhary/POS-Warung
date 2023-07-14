@@ -1,12 +1,12 @@
 @extends('layouts.master')
 
 @section('title')
-    Daftar Pelanggan
+    Daftar pengeluaran
 @endsection
 
 @section('breadcrumb')
     @parent
-    <li class="active">Daftar Pelanggan</li>
+    <li class="active">Daftar pengeluaran</li>
 @endsection
 
 @section('content')
@@ -14,15 +14,16 @@
         <div class="col-lg-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <button type="button" onclick="addForm('{{ route('pelanggan.store') }}')"
+                    <button type="button" onclick="addForm('{{ route('pengeluaran.store') }}')"
                         class="btn btn-success btn-xs btn-flat"><i class="fa fa-plus-circle"></i> Tambah</button>
                 </div>
                 <div class="box-body table-responsive">
                     <table class="table table-stiped table-bordered">
                         <thead>
                             <th width="5%">No</th>
-                            <th>Kode</th>
-                            <th>Nama</th>
+                            <th>Tanggal</th>
+                            <th>Deskripsi</th>
+                            <th>Nominal</th>
                             <th width="15%"><i class="fa fa-cog"></i></th>
                         </thead>
                         <tbody></tbody>
@@ -32,7 +33,7 @@
         </div>
     </div>
 
-    @includeIf('pelanggan.form')
+    @includeIf('pengeluaran.form')
 @endsection
 
 @push('scripts')
@@ -46,17 +47,20 @@
                 serverSide: true,
                 autoWidth: false,
                 ajax: {
-                    url: '{{ route('pelanggan.data') }}',
+                    url: '{{ route('pengeluaran.data') }}',
                 },
                 columns: [{
                         data: 'DT_RowIndex',
                         searchable: false,
                     },
                     {
-                        data: 'kode_customers'
+                        data: 'tanggal'
                     },
                     {
-                        data: 'nama_customers'
+                        data: 'deskripsi'
+                    },
+                    {
+                        data: 'nominal'
                     },
                     {
                         data: 'aksi',
@@ -83,26 +87,28 @@
 
         function addForm(url) {
             $('#modal-form').modal('show');
-            $('#modal-form .modal-title').text('Tambah pelanggan');
+            $('#modal-form .modal-title').text('Tambah pengeluaran');
 
             $('#modal-form form')[0].reset();
             $('#modal-form form').attr('action', url);
             $('#modal-form [name=_method]').val('post');
-            $('#modal-form [name=nama_customers]').focus();
+            $('#modal-form [name=tanggal]').focus();
         }
 
         function editForm(url) {
             $('#modal-form').modal('show');
-            $('#modal-form .modal-title').text('Edit pelanggan');
+            $('#modal-form .modal-title').text('Edit pengeluaran');
 
             $('#modal-form form')[0].reset();
             $('#modal-form form').attr('action', url);
             $('#modal-form [name=_method]').val('put');
-            $('#modal-form [name=nama_customers]').focus();
+            $('#modal-form [name=tanggal]').focus();
 
             $.get(url)
                 .done((response) => {
-                    $('#modal-form [name=nama_customers]').val(response.nama_customers);
+                    $('#modal-form [name=tanggal]').val(response.tanggal);
+                    $('#modal-form [name=deskripsi]').val(response.deskripsi);
+                    $('#modal-form [name=nominal]').val(response.nominal);
                 })
                 .fail((errors) => {
                     alert('Tidak dapat menampilkan data');

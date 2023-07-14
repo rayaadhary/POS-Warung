@@ -12,29 +12,30 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group row">
-                        <label for="nama" class="col-lg-2 col-lg-offset-1 control-label">Nama
+                        <label for="tanggal" class="col-lg-2 col-lg-offset-1 control-label">tanggal
                         </label>
                         <div class="col-lg-6">
-                            <input type="text" name="nama" id="nama" class="form-control" required autofocus>
+                            <input type="date" name="tanggal" id="tanggal" class="form-control" required autofocus>
                             <span class="help-block with-errors"></span>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="telepon" class="col-lg-2 col-lg-offset-1 control-label">telepon
+                        <label for="deskripsi" class="col-lg-2 col-lg-offset-1 control-label">deskripsi
                         </label>
                         <div class="col-lg-6">
-                            <input type="number" name="telepon" id="telepon" class="form-control" required autofocus>
+                            <textarea name="deskripsi" id="deskripsi" rows="3" class="form-control" required autofocus></textarea>
                             <span class="help-block with-errors"></span>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="alamat" class="col-lg-2 col-lg-offset-1 control-label">alamat
+                        <label for="nominal" class="col-lg-2 col-lg-offset-1 control-label">nominal
                         </label>
                         <div class="col-lg-6">
-                            <textarea name="alamat" id="alamat" rows="3" class="form-control" required autofocus></textarea>
+                            <input type="number" name="nominal" id="nominal" class="form-control" required autofocus>
                             <span class="help-block with-errors"></span>
                         </div>
                     </div>
+
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary">Simpan</button>

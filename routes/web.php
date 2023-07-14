@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/supplier/data', [SupplierController::class, 'data'])->name('supplier.data');
     Route::resource('/supplier', SupplierController::class);
+
+    Route::get('/pengeluaran/data', [ExpenseController::class, 'data'])->name('pengeluaran.data');
+    Route::resource('/pengeluaran', ExpenseController::class);
 
     Route::get('/produk/data', [ProductController::class, 'data'])->name('produk.data');
     Route::post('/produk/delete_selected', [ProductController::class, 'deleteSelected'])->name('produk.delete_selected');
