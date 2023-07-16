@@ -4,6 +4,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\PurchaseDetailController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
@@ -42,6 +44,17 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/pengeluaran/data', [ExpenseController::class, 'data'])->name('pengeluaran.data');
     Route::resource('/pengeluaran', ExpenseController::class);
+
+    Route::get('/pembelian/data', [PurchaseController::class, 'data'])->name('pembelian.data');
+    Route::get('/pembelian/{id}/create', [PurchaseController::class, 'create'])->name('pembelian.create');
+    Route::resource('/pembelian', PurchaseController::class)
+        ->except('create');
+
+
+    Route::get('/pembelian_detail/{id}/data', [PurchaseDetailController::class, 'data'])->name('pembelian_detail.data');
+    Route::get('/pembelian_detail/loadform/{diskon}/{total}', [PurchaseDetailController::class, 'loadForm'])->name('pembelian_detail.load_form');
+    Route::resource('/pembelian_detail', PurchaseDetailController::class)
+        ->except('create', 'show', 'edit');
 
     Route::get('/produk/data', [ProductController::class, 'data'])->name('produk.data');
     Route::post('/produk/delete_selected', [ProductController::class, 'deleteSelected'])->name('produk.delete_selected');

@@ -1,12 +1,12 @@
 @extends('layouts.master')
 
 @section('title')
-    Daftar supplier
+    Daftar Supplier
 @endsection
 
 @section('breadcrumb')
     @parent
-    <li class="active">Daftar supplier</li>
+    <li class="active">Daftar Supplier</li>
 @endsection
 
 @section('content')
@@ -14,8 +14,8 @@
         <div class="col-lg-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <button type="button" onclick="addForm('{{ route('supplier.store') }}')"
-                        class="btn btn-success btn-xs btn-flat"><i class="fa fa-plus-circle"></i> Tambah</button>
+                    <button onclick="addForm('{{ route('supplier.store') }}')" class="btn btn-success btn-xs btn-flat"><i
+                            class="fa fa-plus-circle"></i> Tambah</button>
                 </div>
                 <div class="box-body table-responsive">
                     <table class="table table-stiped table-bordered">
@@ -26,7 +26,6 @@
                             <th>Alamat</th>
                             <th width="15%"><i class="fa fa-cog"></i></th>
                         </thead>
-                        <tbody></tbody>
                     </table>
                 </div>
             </div>
@@ -52,6 +51,7 @@
                 columns: [{
                         data: 'DT_RowIndex',
                         searchable: false,
+                        sortable: false
                     },
                     {
                         data: 'nama'
@@ -87,7 +87,7 @@
 
         function addForm(url) {
             $('#modal-form').modal('show');
-            $('#modal-form .modal-title').text('Tambah supplier');
+            $('#modal-form .modal-title').text('Tambah Supplier');
 
             $('#modal-form form')[0].reset();
             $('#modal-form form').attr('action', url);
@@ -97,7 +97,7 @@
 
         function editForm(url) {
             $('#modal-form').modal('show');
-            $('#modal-form .modal-title').text('Edit supplier');
+            $('#modal-form .modal-title').text('Edit Supplier');
 
             $('#modal-form form')[0].reset();
             $('#modal-form form').attr('action', url);
