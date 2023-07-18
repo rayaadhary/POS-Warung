@@ -6,6 +6,8 @@ use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\PurchaseDetailController;
+use App\Http\Controllers\SalesController;
+use App\Http\Controllers\SalesDetailController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
@@ -59,4 +61,20 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/produk/data', [ProductController::class, 'data'])->name('produk.data');
     Route::post('/produk/delete_selected', [ProductController::class, 'deleteSelected'])->name('produk.delete_selected');
     Route::resource('/produk', ProductController::class);
+
+    Route::get('/penjualan/data', [SalesController::class, 'data'])->name('penjualan.data');
+    Route::get('/penjualan', [SalesController::class, 'index'])->name('penjualan.index');
+    Route::get('/penjualan/{id}', [SalesController::class, 'show'])->name('penjualan.show');
+    Route::delete('/penjualan/{id}', [SalesController::class, 'destroy'])->name('penjualan.destroy');
+
+    Route::get('/transaksi/baru', [SalesController::class, 'create'])->name('transaksi.baru');
+    Route::post('/transaksi/simpan', [SalesController::class, 'store'])->name('transaksi.simpan');
+    Route::get('/transaksi/selesai', [SalesController::class, 'selesai'])->name('transaksi.selesai');
+    Route::get('/transaksi/nota-kecil', [SalesController::class, 'notaKecil'])->name('transaksi.nota_kecil');
+    Route::get('/transaksi/nota-besar', [SalesController::class, 'notaBesar'])->name('transaksi.nota_besar');
+
+    Route::get('/transaksi/loadform/{diskon}/{total}/{diterima}', [SalesDetailController::class, 'loadForm'])->name('transaksi.load_form');
+    Route::get('/transaksi/{id}/data', [SalesDetailController::class, 'data'])->name('transaksi.data');
+    Route::resource('/transaksi', SalesDetailController::class)
+        ->except('show', 'create');
 });
