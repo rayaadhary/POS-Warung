@@ -6,6 +6,7 @@ use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\PurchaseDetailController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\SalesDetailController;
 use App\Http\Controllers\SupplierController;
@@ -77,4 +78,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/transaksi/{id}/data', [SalesDetailController::class, 'data'])->name('transaksi.data');
     Route::resource('/transaksi', SalesDetailController::class)
         ->except('show', 'create');
+
+    Route::get('/laporan', [ReportController::class, 'index'])->name('laporan.index');
+    Route::get('/laporan/data/{awal}/{akhir}', [ReportController::class, 'data'])->name('laporan.data');
+    Route::get('/laporan/pdf/{awal}/{akhir}', [ReportController::class, 'exportPDF'])->name('laporan.export_pdf');
 });

@@ -73,7 +73,7 @@
 
                 <li class="header">LAPORAN</li>
                 <li>
-                    <a href="#">
+                    <a href="{{ route('laporan.index') }}">
                         <i class="fa fa-file-pdf-o"></i> <span>Laporan</span>
 
                     </a>
