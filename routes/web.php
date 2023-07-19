@@ -10,6 +10,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\SalesDetailController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,6 +48,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/pengeluaran/data', [ExpenseController::class, 'data'])->name('pengeluaran.data');
     Route::resource('/pengeluaran', ExpenseController::class);
+
+    Route::get('/pengguna/data', [UserController::class, 'data'])->name('pengguna.data');
+    Route::resource('/pengguna', UserController::class);
 
     Route::get('/pembelian/data', [PurchaseController::class, 'data'])->name('pembelian.data');
     Route::get('/pembelian/{id}/create', [PurchaseController::class, 'create'])->name('pembelian.create');

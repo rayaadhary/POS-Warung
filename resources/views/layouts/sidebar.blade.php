@@ -80,7 +80,7 @@
                 </li>
                 <li class="header">Sistem</li>
                 <li>
-                    <a href="#">
+                    <a href="{{ route('pengguna.index') }}">
                         <i class="fa fa-users"></i> <span>Pengguna</span>
                     </a>
                 </li>
