@@ -14,18 +14,13 @@ class SalesDetailController extends Controller
     public function index()
     {
         $produk = Product::orderBy('nama_produk')->get();
-        $pelanggan = Customer::orderBy('nama_customers')->get();
-
+        $diskon = 0;
 
         // cek apakah ada transaksi yang sedang berjalan
         if ($id_sales = session('id_sales')) {
-            return view('penjualan_detail.index', compact('produk', 'pelanggan', 'id_sales'));
+            return view('penjualan_detail.index', compact('produk', 'diskon', 'id_sales'));
         } else {
-            if (Auth::check()) {
-                return redirect()->route('transaksi.baru');
-            } else {
-                return redirect()->route('login');
-            }
+            return redirect()->route('transaksi.baru');
         }
         return;
     }

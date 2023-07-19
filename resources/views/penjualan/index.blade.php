@@ -13,6 +13,15 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="box">
+                <div class="box-header with-border">
+                    <a class="btn btn-success btn-xs btn-flat" href="{{ route('transaksi.baru') }}"><i
+                            class="fa fa-plus-circle"></i>
+                        Transaksi Baru</a>
+                    @empty(!session('id_sales'))
+                        <a href="{{ route('transaksi.index') }}" class="btn btn-info btn-xs btn-flat"><i class="fa fa-pencil"></i>
+                            Transaksi Aktif</a>
+                    @endempty
+                </div>
                 <div class="box-body table-responsive">
                     <table class="table table-stiped table-bordered table-penjualan">
                         <thead>

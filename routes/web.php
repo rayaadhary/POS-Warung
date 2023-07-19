@@ -40,9 +40,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/kategori/data', [CategoryController::class, 'data'])->name('kategori.data');
     Route::resource('/kategori', CategoryController::class);
 
-    Route::get('/pelanggan/data', [CustomerController::class, 'data'])->name('pelanggan.data');
-    Route::resource('/pelanggan', CustomerController::class);
-
     Route::get('/supplier/data', [SupplierController::class, 'data'])->name('supplier.data');
     Route::resource('/supplier', SupplierController::class);
 
