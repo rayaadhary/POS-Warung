@@ -35,10 +35,8 @@
 
                         <!-- Menu Footer-->
                         <li class="user-footer">
+
                             <div class="pull-left">
-                                <a href="{{ route('profile.show') }}" class="btn btn-default btn-flat">Profil</a>
-                            </div>
-                            <div class="pull-right">
                                 <a href="#" class="btn btn-default btn-flat"
                                     onclick="document.getElementById('logout-form').submit()">Keluar</a>
                             </div>

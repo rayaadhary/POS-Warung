@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -18,6 +19,7 @@ class UserSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@email.com',
             'password' => bcrypt('password'),
+            'remember_token' => Str::random(10),
         ]);
     }
 }
