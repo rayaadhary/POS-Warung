@@ -61,7 +61,7 @@
 
                     </a>
                 </li>
-                <li class="header">Sistem</li>
+                <li class="header">SISTEM</li>
                 <li class="{{ request()->is('pengguna') ? 'active' : '' }}">
                     <a href="{{ route('pengguna.index') }}">
                         <i class="fa fa-users"></i> <span>Pengguna</span>
