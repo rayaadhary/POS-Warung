@@ -67,10 +67,11 @@
                     $.post($('#modal-form form').attr('action'), $('#modal-form form').serialize())
                         .done((response) => {
                             $('#modal-form').modal('hide');
+                            Swal.fire('Berhasil!', 'Data telah disimpan.', 'success');
                             table.ajax.reload();
                         })
                         .fail((errors) => {
-                            alert('Tidak dapat menyimpan data');
+                            Swal.fire('Error!', 'Tidak dapat menyimpan data.', 'error');
                             return;
                         });
                 }
@@ -100,26 +101,13 @@
                 .done((response) => {
                     $('#modal-form [name=nama]').val(response.nama);
                 })
+
                 .fail((errors) => {
                     alert('Tidak dapat menampilkan data');
                     return;
                 });
         }
-
-        function deleteData(url) {
-            if (confirm('Yakin ingin menghapus data terpilih?')) {
-                $.post(url, {
-                        '_token': $('[name=csrf-token]').attr('content'),
-                        '_method': 'delete'
-                    })
-                    .done((response) => {
-                        table.ajax.reload();
-                    })
-                    .fail((errors) => {
-                        alert('Tidak dapat menghapus data');
-                        return;
-                    });
-            }
-        }
     </script>
+
+    <script src="{{ asset('js/delete.js') }}"></script>
 @endpush

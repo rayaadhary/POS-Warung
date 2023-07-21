@@ -21,25 +21,23 @@
                         class="btn btn-danger btn-xs btn-flat"><i class="fa fa-trash"></i> Hapus</button>
                 </div>
                 <div class="box-body table-responsive">
-                    <form action="" class="form-produk">
-                        @csrf
-                        <table class="table table-stiped table-bordered">
-                            <thead>
-                                <th><input type="checkbox" name="select_all" id="select_all"></th>
-                                <th width="5%">No</th>
-                                <th>Kode</th>
-                                <th>Nama</th>
-                                <th>Kategori</th>
-                                <th>Merk</th>
-                                <th>Harga Beli</th>
-                                <th>Harga Jual</th>
-                                <th>Diskon</th>
-                                <th>Stok</th>
-                                <th width="15%"><i class="fa fa-cog"></i></th>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                    </form>
+                    {{-- @csrf --}}
+                    <table class="table table-stiped table-bordered">
+                        <thead>
+                            <th><input type="checkbox" name="select_all" id="select_all"></th>
+                            <th width="5%">No</th>
+                            <th>Kode</th>
+                            <th>Nama</th>
+                            <th>Kategori</th>
+                            <th>Merk</th>
+                            <th>Harga Beli</th>
+                            <th>Harga Jual</th>
+                            <th>Diskon</th>
+                            <th>Stok</th>
+                            <th width="15%"><i class="fa fa-cog"></i></th>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
                 </div>
             </div>
         </div>

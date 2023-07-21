@@ -23,8 +23,8 @@ class ProductController extends Controller
     {
         $produk = Product::leftJoin('categories', 'categories.id_categories', 'products.id_categories')
             ->select('products.*', 'nama')
-            ->orderBy('kode_produk', 'asc')
             ->get();
+
         return datatables()
             ->of($produk)
             ->addIndexColumn()
@@ -45,11 +45,11 @@ class ProductController extends Controller
             })
             ->addColumn('aksi', function ($produk) {
                 return '
-                <div class="btn-group">
-                    <button onclick="editForm(`'  . route('produk.update', $produk->id_products)  . '`)" class="btn btn-xs btn-info btn-flat"><i class="fa fa-pencil"></i></button>
-                    <button onclick="deleteData(`'  . route('produk.destroy', $produk->id_products)  . '`)" class="btn btn-xs btn-danger btn-flat"><i class="fa fa-trash"></i></button>
-                </div>
-                ';
+            <div class="btn-group">
+                <button onclick="editForm(`'  . route('produk.update', $produk->id_products)  . '`)" class="btn btn-xs btn-info btn-flat"><i class="fa fa-pencil"></i></button>
+                <button onclick="deleteData(`'  . route('produk.destroy', $produk->id_products)  . '`)" class="btn btn-xs btn-danger btn-flat"><i class="fa fa-trash"></i></button>
+            </div>
+            ';
             })
             ->rawColumns(['aksi', 'kode_produk', 'select_all'])
             ->make(true);

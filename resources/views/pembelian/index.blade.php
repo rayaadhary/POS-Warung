@@ -126,21 +126,7 @@
             table1.ajax.url(url);
             table1.ajax.reload();
         }
-
-        function deleteData(url) {
-            if (confirm('Yakin ingin menghapus data terpilih?')) {
-                $.post(url, {
-                        '_token': $('[name=csrf-token]').attr('content'),
-                        '_method': 'delete'
-                    })
-                    .done((response) => {
-                        table.ajax.reload();
-                    })
-                    .fail((errors) => {
-                        alert('Tidak dapat menghapus data');
-                        return;
-                    });
-            }
-        }
     </script>
+
+    <script src="{{ asset('js/delete.js') }}"></script>
 @endpush

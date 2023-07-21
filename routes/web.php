@@ -61,7 +61,7 @@ Route::group(['middleware' => 'auth'], function () {
         ->except('create', 'show', 'edit');
 
     Route::get('/produk/data', [ProductController::class, 'data'])->name('produk.data');
-    Route::post('/produk/delete_selected', [ProductController::class, 'deleteSelected'])->name('produk.delete_selected');
+    Route::post('/produk/delete-selected', [ProductController::class, 'deleteSelected'])->name('produk.delete_selected');
     Route::resource('/produk', ProductController::class);
 
     Route::get('/penjualan/data', [SalesController::class, 'data'])->name('penjualan.data');

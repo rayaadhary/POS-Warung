@@ -11,4 +11,9 @@ class Product extends Model
 
     protected $primaryKey = 'id_products';
     protected $guarded = [];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'id_categories', 'id_categories');
+    }
 }
