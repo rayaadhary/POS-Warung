@@ -17,14 +17,11 @@
                     <div class="btn-group"></div>
                     <button type="button" onclick="addForm('{{ route('produk.store') }}')"
                         class="btn btn-success btn-xs btn-flat"><i class="fa fa-plus-circle"></i> Tambah</button>
-                    <button type="button" onclick="deleteSelected('{{ route('produk.delete_selected') }}')"
-                        class="btn btn-danger btn-xs btn-flat"><i class="fa fa-trash"></i> Hapus</button>
                 </div>
                 <div class="box-body table-responsive">
                     {{-- @csrf --}}
                     <table class="table table-stiped table-bordered">
                         <thead>
-                            <th><input type="checkbox" name="select_all" id="select_all"></th>
                             <th width="5%">No</th>
                             <th>Kode</th>
                             <th>Nama</th>
@@ -60,10 +57,6 @@
                     url: '{{ route('produk.data') }}',
                 },
                 columns: [{
-                        data: 'select_all',
-                        sortable: false
-                    },
-                    {
                         data: 'DT_RowIndex',
                         searchable: false,
                     },
@@ -105,10 +98,11 @@
                     $.post($('#modal-form form').attr('action'), $('#modal-form form').serialize())
                         .done((response) => {
                             $('#modal-form').modal('hide');
+                            Swal.fire('Berhasil!', 'Data telah disimpan.', 'success');
                             table.ajax.reload();
                         })
                         .fail((errors) => {
-                            alert('Tidak dapat menyimpan data');
+                            Swal.fire('Error!', 'Tidak dapat menyimpan data.', 'error');
                             return;
                         });
                 }
@@ -152,39 +146,7 @@
                     return;
                 });
         }
-
-        function deleteData(url) {
-            if (confirm('Yakin ingin menghapus data terpilih?')) {
-                $.post(url, {
-                        '_token': $('[name=csrf-token]').attr('content'),
-                        '_method': 'delete'
-                    })
-                    .done((response) => {
-                        table.ajax.reload();
-                    })
-                    .fail((errors) => {
-                        alert('Tidak dapat menghapus data');
-                        return;
-                    });
-            }
-        }
-
-        function deleteSelected(url) {
-            if ($('input:checked').length > 1) {
-                if (confirm('Yakin ingin menghapus data terpilih?')) {
-                    $.post(url, $('.form-produk').serialize())
-                        .done((response) => {
-                            table.ajax.reload();
-                        })
-                        .fail((errors) => {
-                            alert('Tidak dapat menghapus data');
-                            return;
-                        });
-                }
-            } else {
-                alert('Pilih data yang akan dihapus');
-                return;
-            }
-        }
     </script>
+
+    <script src="{{ asset('js/delete.js') }}"></script>
 @endpush

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+
 class UserController extends Controller
 {
     public function index()
@@ -52,7 +53,7 @@ class UserController extends Controller
         $password_confirmation = $request->password_confirmation;
 
         if ($password != $password_confirmation) {
-            return response()->json(['success' => false, 'message' => 'Password tidak sesuai'], 422);
+            return response()->json('Password tidak sesuai', 400);
         } else {
             $pengguna = new User();
             $pengguna->name = $request->name;
@@ -60,7 +61,7 @@ class UserController extends Controller
             $pengguna->password =  bcrypt($password);
             $pengguna->save();
 
-            return response()->json(['success' => true, 'message' => 'Data berhasil disimpan'], 200);
+            return response()->json('Data berhasil disimpan', 200);
         }
     }
 

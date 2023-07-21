@@ -75,10 +75,11 @@
                     $.post($('#modal-form form').attr('action'), $('#modal-form form').serialize())
                         .done((response) => {
                             $('#modal-form').modal('hide');
+                            Swal.fire('Berhasil!', 'Data telah disimpan.', 'success');
                             table.ajax.reload();
                         })
                         .fail((errors) => {
-                            alert('Tidak dapat menyimpan data');
+                            Swal.fire('Error!', 'Tidak dapat menyimpan data.', 'error');
                             return;
                         });
                 }

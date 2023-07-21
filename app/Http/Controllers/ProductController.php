@@ -28,9 +28,6 @@ class ProductController extends Controller
         return datatables()
             ->of($produk)
             ->addIndexColumn()
-            ->addColumn('select_all', function ($produk) {
-                return '<input type="checkbox" name="id_products[]" value="' . $produk->id_products . '">';
-            })
             ->addColumn('kode_produk', function ($produk) {
                 return '<span class="label label-success">' . $produk->kode_produk . '</span>';
             })

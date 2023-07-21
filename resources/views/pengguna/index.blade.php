@@ -72,26 +72,16 @@
                     $.post($('#modal-form form').attr('action'), $('#modal-form form').serialize())
                         .done((response) => {
                             $('#modal-form').modal('hide');
+                            Swal.fire('Berhasil!', 'Data telah disimpan.', 'success');
                             table.ajax.reload();
-                            // Show success alert here
-                            showAlert('success', response.message);
                         })
-                        .fail((xhr) => {
-                            $('#modal-form').modal('hide');
-                            // Show error alert here
-                            showAlert('danger', xhr.responseJSON.message);
+                        .fail((errors) => {
+                            Swal.fire('Error!', 'Tidak dapat menyimpan data.', 'error');
+                            return;
                         });
                 }
             });
 
-            // Function to show Bootstrap alert
-            function showAlert(type, message) {
-                const alertDiv = `<div class="alert alert-${type} alert-dismissible" role="alert">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                ${message}
-                              </div>`;
-                $('#alerts-container').html(alertDiv);
-            }
         });
 
         function addForm(url) {
