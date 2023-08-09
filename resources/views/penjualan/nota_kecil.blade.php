@@ -9,45 +9,45 @@
 
     <?php
     $style = '
-                                    <style>
-                                        * {
-                                            font-family: "consolas", sans-serif;
-                                        }
-                                        p {
-                                            display: block;
-                                            margin: 3px;
-                                            font-size: 10pt;
-                                        }
-                                        table td {
-                                            font-size: 9pt;
-                                        }
-                                        .text-center {
-                                            text-align: center;
-                                        }
-                                        .text-right {
-                                            text-align: right;
-                                        }
-                                
-                                        @media print {
-                                            @page {
-                                                margin: 0;
-                                                size: 75mm 
-                                    ';
+                                            <style>
+                                                * {
+                                                    font-family: "consolas", sans-serif;
+                                                }
+                                                p {
+                                                    display: block;
+                                                    margin: 3px;
+                                                    font-size: 10pt;
+                                                }
+                                                table td {
+                                                    font-size: 9pt;
+                                                }
+                                                .text-center {
+                                                    text-align: center;
+                                                }
+                                                .text-right {
+                                                    text-align: right;
+                                                }
+                                        
+                                                @media print {
+                                                    @page {
+                                                        margin: 0;
+                                                        size: 75mm 
+                                            ';
     ?>
     <?php
     $style .= !empty($_COOKIE['innerHeight']) ? $_COOKIE['innerHeight'] . 'mm; }' : '}';
     ?>
     <?php
     $style .= '
-                                            html, body {
-                                                width: 70mm;
-                                            }
-                                            .btn-print {
-                                                display: none;
-                                            }
-                                        }
-                                    </style>
-                                    ';
+                                                    html, body {
+                                                        width: 70mm;
+                                                    }
+                                                    .btn-print {
+                                                        display: none;
+                                                    }
+                                                }
+                                            </style>
+                                            ';
     ?>
 
     {!! $style !!}
@@ -65,7 +65,7 @@
         <p style="float: right">{{ strtoupper(auth()->user()->name) }}</p>
     </div>
     <div class="clear-both" style="clear: both;"></div>
-    <p>No: {{ tambah_nol_didepan($penjualan->id_penjualan, 10) }}</p>
+    <p>No: {{ tambah_nol_didepan($penjualan->id_sales, 10) }}</p>
     <p class="text-center">===================================</p>
 
     <br>
