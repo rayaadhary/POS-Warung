@@ -45,14 +45,16 @@
                         <i class="fa fa-upload"></i> <span>Penjualan</span>
                     </a>
                 </li>
+                @if (auth()->user()->roles == 'pemilik')
+                    <li class="header">LAPORAN</li>
+                    <li class="{{ request()->is('laporan') ? 'active' : '' }}">
 
-                <li class="header">LAPORAN</li>
-                <li class="{{ request()->is('laporan') ? 'active' : '' }}">
-                    <a href="{{ route('laporan.index') }}">
-                        <i class="fa fa-file-pdf-o"></i> <span>Laporan</span>
+                        <a href="{{ route('laporan.index') }}">
+                            <i class="fa fa-file-pdf-o"></i> <span>Laporan</span>
 
-                    </a>
-                </li>
+                        </a>
+                    </li>
+                @endif
                 <li class="header">SISTEM</li>
                 <li class="{{ request()->is('pengguna') ? 'active' : '' }}">
                     <a href="{{ route('pengguna.index') }}">

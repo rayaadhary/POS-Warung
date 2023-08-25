@@ -36,7 +36,7 @@ Route::get('/', fn () => redirect()->route('login'));
 //     })->name('dashboard');
 // });
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth', 'roles:admin,pemilik']], function () {
     Route::get('/kategori/data', [CategoryController::class, 'data'])->name('kategori.data');
     Route::resource('/kategori', CategoryController::class);
 
@@ -80,9 +80,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/transaksi', SalesDetailController::class)
         ->except('show', 'create');
 
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});
+
+Route::group(['middleware' => ['auth', 'roles:pemilik']], function () {
     Route::get('/laporan', [ReportController::class, 'index'])->name('laporan.index');
     Route::get('/laporan/data/{awal}/{akhir}', [ReportController::class, 'data'])->name('laporan.data');
     Route::get('/laporan/pdf/{awal}/{akhir}', [ReportController::class, 'exportPDF'])->name('laporan.export_pdf');
-
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
